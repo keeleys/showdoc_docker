@@ -1,0 +1,67 @@
+<include file="Common/header" />
+<style type="text/css">
+.single-cat{
+  margin: 5px;
+}
+.cat-list{
+  max-height: 250px;
+}
+</style>
+ <div id="edit-cat" class="modal hide fade">
+  <!-- 编辑框 -->
+  <div class="cat-edit">
+      <div class="modal-header">
+      <h4>新建/编辑目录</h4>
+      </div>
+      <input type="hidden" id="item_id" value="{$item_id}">
+      <input type="hidden" id="cat_id" value="{$Catalog.cat_id}">
+      <div class="add-cat">
+          <form class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label" for="inputEmail">目录名</label>
+              <div class="controls">
+                <input type="text" id="cat_name" placeholder="目录名" value="{$Catalog.cat_name}">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="inputPassword">序号</label>
+              <div class="controls">
+                <input type="text" id="s_number" placeholder="可选：顺序数字" value="{$Catalog.s_number}">
+              </div>
+            </div>
+             <div class="control-group">
+              <label class="control-label" for="inputPassword">上级目录：</label>
+              <div class="controls">
+                  <select name="parent_cat_id" id="parent_cat_id" ></select>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <button  class="btn" id="save-cat">保存</button>
+                <button  class="btn btn-link" id="delete-cat">删除目录</button>
+              </div>
+            </div>
+          </form>
+
+      </div>
+    </div>
+  <!-- 目录列表 -->
+  <div class="cat-list">
+    <div class="modal-header">
+    <h4>目录列表&nbsp;<small>（点击可编辑）</small></h4>
+    </div>
+    <div id="show-cat">
+
+    <br>
+    <br>
+    </div>
+  </div>
+
+    <div class="modal-footer">
+      <a href="#" class="btn exist-cat">关闭</a>
+    </div>
+ </div>
+
+<input type="hidden" id="default_parent_cat_id"  value="{$default_parent_cat_id}">
+ <include file="Common/footer" />
+ <script src="__PUBLIC__/js/catalog/edit.js?v=1.1.10third"></script>

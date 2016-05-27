@@ -1,0 +1,94 @@
+<include file="Common/header" />
+<link rel="stylesheet" href="__PUBLIC__/css/page/edit.css?1.1third" />
+<link rel="stylesheet" href="__PUBLIC__/editor.md/css/editormd.css" />
+<style type="text/css">
+
+</style>
+<div id="layout">
+    <!-- 顶部条 -->
+    <header class="row">
+        <div class="head-left  pull-left">
+            <ul class="inline">
+                <li>
+                    <input type="text" name="page_title" id="page_title" placeholder="请输入页面标题" value="{$page.page_title}" tabindex="1">
+                </li>
+                <li>
+                    二级目录：
+                    <select name="cat_id" id="cat_id" tabindex="2"></select>
+                </li>
+                <li id="li_parent_cat">
+                    三级目录：
+                    <select name="parent_cat_id" id="parent_cat_id" ></select>
+                </li>
+                <li>
+                    <input type="text" name="s_number" id="s_number" value="{$page.s_number}" placeholder="可选：顺序数字"  tabindex="3" >
+                </li>
+                <li>
+                    <!-- 首次添加没有历史版本，不显示 -->
+                    <if condition="$page.page_id gt 0">
+                        <a href="?s=home/page/history&page_id={$page.page_id}">历史版本</a>
+                        <else />
+                    </if>
+                </li>
+            </ul>
+        </div>
+        <div class="head-right pull-right">
+            <a href="#" class="btn btn-primary " id="save">保存</a>
+            <a href="?s=home/item/show&item_id={$item_id}&page_id={$page.page_id}" class="btn cancel">取消</a>
+        </div>
+    </header>
+    <br>
+    <!-- 插入模板的按钮组 -->
+    <div class="btns">
+        <button id="api-doc" tabindex="4" >插入API接口模板</button>
+        <button id="database-doc" tabindex="5" >插入数据字典模板</button>
+        <button id="jsons" tabindex="7" >JSON转参数表格</button>
+    </div>
+    <div id="editormd">
+        <textarea id="page_content" style="display:none;" tabindex="6" >{$page.page_content}</textarea>
+    </div>
+    <input type="hidden" id="item_id" value="{$item_id}">
+    <input type="hidden" id="page_id" value="{$page.page_id}">
+    <input type="hidden" id="default_second_cat_id" value="{$default_second_cat_id}">
+    <input type="hidden" id="default_child_cat_id" value="{$default_child_cat_id}">
+</div>
+<!-- 模板存放的地方 -->
+<div id="api-doc-templ" style="display:none">
+    <include file="MdTemplate/api-doc" />
+</div>
+<div id="database-doc-templ" style="display:none">
+    <include file="MdTemplate/database" />
+</div>
+
+<div id="json-templ" class="editormd-dialog editormd-preformatted-text-dialog" style="width: 780px; height: 540px;">
+
+    <div style="cursor: move;" class="editormd-dialog-header">
+        <strong class="editormd-dialog-title">JSON转参数表格</strong>
+    </div>
+    <a class="fa fa-close editormd-dialog-close" href="javascript:closeDiv('#json-templ');"></a>
+    <div class="editormd-dialog-container">
+        <textarea id="jsons_add" class="jsons" placeholder="请粘贴一段json，程序将自动将json解析并生成参数表格。此功能适合用于快速编写API文档的返回参数表格"></textarea>
+        
+        <div class="editormd-dialog-footer">
+            <button class="editormd-btn editormd-enter-btn">确定</button>
+            <button class="editormd-btn editormd-cancel-btn" onclick="closeDiv('#json-templ')">取消</button>
+        </div>
+    </div>
+    <div class="editormd-dialog-mask editormd-dialog-mask-bg"></div><div class="editormd-dialog-mask editormd-dialog-mask-con"></div>
+</div>
+
+
+<include file="Common/footer" />
+<script src="__PUBLIC__/js/jquery.bootstrap-growl.min.js"></script>
+<script src="__PUBLIC__/js/jquery.hotkeys.js"></script>
+<script src="__PUBLIC__/editor.md/editormd.min.js"></script>
+<script src="__PUBLIC__/editor.md/plugins/image-dialog/image-dialog.js"></script>
+<script src="__PUBLIC__/editor.md/plugins/link-dialog/link-dialog.js"></script>
+<script src="__PUBLIC__/editor.md/plugins/preformatted-text-dialog/preformatted-text-dialog.js"></script>
+<script src="__PUBLIC__/editor.md/plugins/code-block-dialog/code-block-dialog.js"></script>
+<script src="__PUBLIC__/editor.md/plugins/html-entities-dialog/html-entities-dialog.js"></script>
+<script src="__PUBLIC__/editor.md/plugins/goto-line-dialog/goto-line-dialog.js"></script>
+<script src="__PUBLIC__/editor.md/plugins/table-dialog/table-dialog.js"></script>
+<script src="__PUBLIC__/editor.md/plugins/reference-link-dialog/reference-link-dialog.js"></script>
+
+<script src="__PUBLIC__/js/page/edit.js?v=1.1.2thirdon"></script>
